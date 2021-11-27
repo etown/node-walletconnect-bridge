@@ -1,5 +1,6 @@
 import fastify from 'fastify'
 import Helmet from 'fastify-helmet'
+import middie from 'middie'
 import WebSocket from 'ws'
 import config from './config'
 import pubsub from './pubsub'
@@ -11,6 +12,7 @@ const app = fastify({
   logger: { prettyPrint: { forceColor: true } }
 })
 
+app.register(middie)
 app.register(Helmet)
 
 app.get('/health', (_, res) => {
